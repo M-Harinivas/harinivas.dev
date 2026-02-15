@@ -1,49 +1,57 @@
 import Navigation from "@/components/Navigation";
 import BentoHero from "@/components/BentoHero";
+import BentoAbout from "@/components/BentoAbout";
 import BentoSkills from "@/components/BentoSkills";
 import BentoProjects from "@/components/BentoProjects";
 import BentoEducation from "@/components/BentoEducation";
 import BentoExperience from "@/components/BentoExperience";
-import BentoAchievements from "@/components/BentoAchievements";
 import BentoContact from "@/components/BentoContact";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
       <Navigation />
-      <main className="container mx-auto px-4 sm:px-6 pt-24 pb-16">
-        <div className="grid grid-cols-12 gap-4 max-w-6xl mx-auto">
-          {/* Hero Section */}
+
+      {/* Marquee ticker */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-primary text-primary-foreground py-2 overflow-hidden">
+        <div className="marquee whitespace-nowrap flex gap-8 text-xs font-mono tracking-wider">
+          <span>PYTHON • MACHINE LEARNING • DEEP LEARNING • AWS • TENSORFLOW • NLP • OPENCV • FLASK • MYSQL •</span>
+          <span>PYTHON • MACHINE LEARNING • DEEP LEARNING • AWS • TENSORFLOW • NLP • OPENCV • FLASK • MYSQL •</span>
+        </div>
+      </div>
+
+      <main className="container mx-auto px-4 sm:px-6 pt-6 pb-20 max-w-6xl">
+        <div className="grid grid-cols-12 gap-4">
+          {/* Hero */}
           <BentoHero />
-          
-          {/* Skills Section */}
-          <div className="col-span-full" id="skills" />
+
+          {/* About */}
+          <div className="col-span-full mt-12" id="about" />
+          <BentoAbout />
+
+          {/* Skills */}
+          <div className="col-span-full mt-12" id="skills" />
           <BentoSkills />
-          
-          {/* Projects Section */}
-          <div className="col-span-full mt-8" id="projects" />
+
+          {/* Projects */}
+          <div className="col-span-full mt-12" id="projects" />
           <BentoProjects />
-          
-          {/* Education Section */}
-          <div className="col-span-full mt-8" id="education" />
+
+          {/* Education */}
+          <div className="col-span-full mt-12" id="education" />
           <BentoEducation />
-          
-          {/* Experience Section */}
-          <div className="col-span-full mt-8" id="experience" />
+
+          {/* Experience */}
+          <div className="col-span-full mt-12" id="experience" />
           <BentoExperience />
-          
-          {/* Achievements Section */}
-          <div className="col-span-full mt-8" />
-          <BentoAchievements />
-          
-          {/* Contact Section */}
-          <div className="col-span-full mt-8" />
+
+          {/* Contact */}
+          <div className="col-span-full mt-12" id="contact" />
           <BentoContact />
         </div>
 
-        {/* Footer */}
-        <footer className="mt-16 text-center text-sm text-muted-foreground font-mono">
-          <p>© 2026 Harinivas M. Built with 💜</p>
+        <footer className="mt-20 mb-8 text-center text-sm text-muted-foreground font-mono">
+          <p>© 2026 Harinivas M — Built with 💜</p>
         </footer>
       </main>
     </div>
