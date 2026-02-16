@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Phone, MapPin, ChevronDown } from "lucide-react";
+import profilePhoto from "@/assets/profile-photo.jpg";
 
 const BentoHero = () => {
   return (
@@ -17,7 +18,25 @@ const BentoHero = () => {
       {/* Grid pattern */}
       <div className="absolute inset-0 grid-pattern opacity-30 rounded-2xl" />
 
-      <div className="relative z-10 max-w-3xl">
+      <div className="relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-16">
+        {/* Profile Photo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="shrink-0"
+        >
+          <div className="relative group">
+            <div className="absolute -inset-1.5 bg-gradient-to-br from-primary via-accent to-primary rounded-full blur-md opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+            <img
+              src={profilePhoto}
+              alt="Harinivas M"
+              className="relative w-40 h-40 md:w-52 md:h-52 rounded-full object-cover border-2 border-border"
+            />
+          </div>
+        </motion.div>
+
+        <div className="max-w-3xl">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -94,6 +113,7 @@ const BentoHero = () => {
             <Mail className="w-4 h-4" /> Get in Touch
           </a>
         </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}
