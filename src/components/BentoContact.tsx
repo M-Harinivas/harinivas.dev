@@ -1,20 +1,61 @@
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { Mail, MapPin, Phone, Send, Linkedin, Github } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { FloatingLabelInput, FloatingLabelTextarea, AnimatedSubmitButton } from "@/components/ui/floating-input";
 
 const BentoContact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errors, setErrors] = useState({ name: "", email: "", message: "" });
   const { ref: titleRef, isVisible: titleVis } = useScrollReveal();
   const { ref: formRef, isVisible: formVis } = useScrollReveal();
   const { ref: infoRef, isVisible: infoVis } = useScrollReveal();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateForm = () => {
+    const newErrors = { name: "", email: "", message: "" };
+    let isValid = true;
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+      isValid = false;
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+      isValid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Invalid email address";
+      isValid = false;
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thanks for reaching out! I'll get back to you soon.");
+    
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+    
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    
+    setIsSubmitting(false);
+    setIsSuccess(true);
     setFormData({ name: "", email: "", message: "" });
+    
+    // Reset success state after 3 seconds
+    setTimeout(() => {
+      setIsSuccess(false);
+    }, 3000);
   };
 
   return (
@@ -30,32 +71,45 @@ const BentoContact = () => {
       >
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Input
-              placeholder="Your Name"
+            <FloatingLabelInput
+              label="Your Name"
               value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="bg-secondary border-0 h-12 rounded-xl"
+              onChange={(e) => {
+                setFormData({ ...formData, name: e.target.value });
+                setErrors({ ...errors, name: "" });
+              }}
+              error={errors.name}
               required
             />
-            <Input
+            <FloatingLabelInput
               type="email"
-              placeholder="Your Email"
+              label="Your Email"
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="bg-secondary border-0 h-12 rounded-xl"
+              onChange={(e) => {
+                setFormData({ ...formData, email: e.target.value });
+                setErrors({ ...errors, email: "" });
+              }}
+              error={errors.email}
               required
             />
           </div>
-          <Textarea
-            placeholder="Tell me about your project or idea..."
+          <FloatingLabelTextarea
+            label="Tell me about your project or idea..."
             value={formData.message}
-            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-            className="bg-secondary border-0 rounded-xl min-h-[140px] resize-none"
+            onChange={(e) => {
+              setFormData({ ...formData, message: e.target.value });
+              setErrors({ ...errors, message: "" });
+            }}
+            error={errors.message}
             required
           />
-          <Button type="submit" className="w-full h-12 rounded-xl text-base gap-2">
+          <AnimatedSubmitButton
+            type="submit"
+            isLoading={isSubmitting}
+            success={isSuccess}
+          >
             Send Message <Send className="w-4 h-4" />
-          </Button>
+          </AnimatedSubmitButton>
         </form>
       </div>
 
