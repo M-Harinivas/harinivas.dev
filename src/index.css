@@ -305,6 +305,20 @@
     pointer-events: none;
     color: hsl(var(--muted-foreground));
   }
+
+  /* Shimmer animation for loading states */
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
 }
 
 /* Reduced motion support */

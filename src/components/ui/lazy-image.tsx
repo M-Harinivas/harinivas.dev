@@ -121,20 +121,3 @@ export const ImageSkeleton = ({
     </motion.div>
   );
 };
-
-// Add shimmer animation to global CSS
-const style = document.createElement("style");
-style.textContent = `
-  @keyframes shimmer {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(100%);
-    }
-  }
-  .animate-shimmer {
-    animation: shimmer 2s infinite;
-  }
-`;
-document.head.appendChild(style);

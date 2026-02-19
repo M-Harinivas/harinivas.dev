@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ReactNode, useState, InputHTMLAttributes, TextareaHTMLAttributes } from "react";
+import { ReactNode, useState, InputHTMLAttributes, TextareaHTMLAttributes, ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 interface FloatingLabelInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -141,7 +141,7 @@ export const AnimatedSubmitButton = ({
   success = false,
   className,
   ...props
-}: AnimatedSubmitButtonProps & InputHTMLAttributes<HTMLButtonElement>) => {
+}: AnimatedSubmitButtonProps & ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
     <motion.button
       className={cn(

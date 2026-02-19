@@ -118,13 +118,13 @@ const Navigation = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6, duration: 0.4 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             <Button
               size="sm"
               className="hidden md:flex gap-2 rounded-xl btn-hover-glow"
               onClick={() => window.open("user-uploads://Harinivas_M.pdf")}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               <Download className="w-4 h-4" /> Resume
             </Button>
