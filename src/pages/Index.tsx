@@ -13,8 +13,8 @@ const Index = () => {
       <Navigation />
 
       {/* Marquee ticker */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-primary text-primary-foreground py-2 overflow-hidden">
-        <div className="marquee whitespace-nowrap flex gap-8 text-xs font-mono tracking-wider">
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-r from-primary via-accent to-primary text-primary-foreground py-2 overflow-hidden shadow-lg">
+        <div className="marquee whitespace-nowrap flex gap-8 text-xs font-mono tracking-wider font-semibold">
           <span>PYTHON • MACHINE LEARNING • DEEP LEARNING • AWS • TENSORFLOW • NLP • OPENCV • FLASK • MYSQL •</span>
           <span>PYTHON • MACHINE LEARNING • DEEP LEARNING • AWS • TENSORFLOW • NLP • OPENCV • FLASK • MYSQL •</span>
         </div>
@@ -51,7 +51,7 @@ const Index = () => {
         </div>
 
         <footer className="mt-20 mb-8 text-center text-sm text-muted-foreground font-mono">
-          <p>© 2026 Harinivas M — Built with 💜</p>
+          <p>© 2026 Harinivas M </p>
         </footer>
       </main>
     </div>

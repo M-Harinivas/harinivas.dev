@@ -52,21 +52,20 @@ const Navigation = () => {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-background/70 backdrop-blur-2xl border-b border-border shadow-sm py-3"
+          ? "glass-effect border-b border-border shadow-lg py-3"
           : "bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between max-w-6xl">
         <motion.a
           href="/"
-          className="text-2xl font-bold tracking-tight relative group"
+          className="text-2xl font-bold tracking-tight relative group z-10"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           <span className="gradient-text">HM</span>
-          <span className="text-muted-foreground font-light">.</span>
           <motion.span
-            className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-accent"
+            className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-accent rounded-full"
             initial={{ width: 0 }}
             whileHover={{ width: "100%" }}
             transition={{ duration: 0.3 }}
