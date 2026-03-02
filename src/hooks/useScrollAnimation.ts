@@ -118,7 +118,7 @@ export function useScaleOnScroll(options: UseScrollAnimationOptions = {}) {
 }
 
 interface UseScrollProgressOptions {
-  offset?: [string, string];
+  offset?: [string, string] | Array<string | number>;
 }
 
 export function useScrollProgress(
@@ -129,7 +129,7 @@ export function useScrollProgress(
   
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset,
+    offset: offset as any,
   });
 
   return scrollYProgress;

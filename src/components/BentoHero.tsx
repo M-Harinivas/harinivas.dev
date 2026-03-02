@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Phone, MapPin, ChevronDown } from "lucide-react";
-import profilePhoto from "@/assets/profile-photo.jpg";
+import { Github, Linkedin, Mail, MapPin, ChevronDown } from "lucide-react";
 
 const BentoHero = () => {
   return (
@@ -8,44 +7,49 @@ const BentoHero = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="bento-card col-span-full row-span-2 relative min-h-[85vh] flex flex-col justify-center noise"
+      className="bento-card glass-effect col-span-full row-span-2 relative min-h-[85vh] flex flex-col justify-center noise overflow-hidden"
     >
-      {/* Decorative blobs */}
-      <div className="absolute top-10 right-10 w-72 h-72 bg-primary/15 rounded-full blur-[100px] floating" />
-      <div className="absolute bottom-10 left-10 w-56 h-56 bg-accent/15 rounded-full blur-[80px] floating-delayed" />
-      <div className="absolute top-1/2 left-1/2 w-40 h-40 bg-primary/10 rounded-full blur-[60px] floating-slow" />
+      {/* Animated gradient orbs */}
+      <div className="absolute top-10 right-10 w-72 h-72 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-[120px] floating" />
+      <div className="absolute bottom-10 left-10 w-56 h-56 bg-gradient-to-tr from-accent/20 to-primary/20 rounded-full blur-[100px] floating-delayed" />
+      <div className="absolute top-1/2 left-1/2 w-40 h-40 bg-gradient-to-bl from-primary/15 to-accent/15 rounded-full blur-[80px] floating-slow" />
+      
+      {/* Particle effects */}
+      <div className="particles">
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="particle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${8 + Math.random() * 4}s`,
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1, 1, 0] }}
+            transition={{
+              duration: 8,
+              delay: i * 0.5,
+              repeat: Infinity,
+            }}
+          />
+        ))}
+      </div>
 
       {/* Grid pattern */}
       <div className="absolute inset-0 grid-pattern opacity-30 rounded-2xl" />
 
-      <div className="relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-16">
-        {/* Profile Photo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="shrink-0"
-        >
-          <div className="relative group">
-            <div className="absolute -inset-1.5 bg-gradient-to-br from-primary via-accent to-primary rounded-full blur-md opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
-            <img
-              src={profilePhoto}
-              alt="Harinivas M"
-              className="relative w-40 h-40 md:w-52 md:h-52 rounded-full object-cover border-2 border-border"
-            />
-          </div>
-        </motion.div>
-
-        <div className="max-w-3xl">
+      <div className="relative z-10 flex flex-col items-center justify-center w-full">
+        <div className="max-w-3xl w-full">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="flex items-center gap-3 mb-8"
+          className="flex items-center gap-3 mb-8 glass-effect px-4 py-2 rounded-full w-fit"
         >
           <div className="status-dot" />
           <span className="text-sm text-muted-foreground font-mono">
-            Open for internships & collaborations
+            Intern at @SDX Partners as Software Development Engineer (AI & ML)
           </span>
         </motion.div>
 
@@ -78,10 +82,6 @@ const BentoHero = () => {
           <span className="flex items-center gap-1.5">
             <MapPin className="w-3.5 h-3.5" /> Dharmapuri, India
           </span>
-          <span className="text-border">•</span>
-          <span className="flex items-center gap-1.5">
-            <Phone className="w-3.5 h-3.5" /> +91 6369792085
-          </span>
         </motion.div>
 
         <motion.div
@@ -90,28 +90,36 @@ const BentoHero = () => {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="flex items-center gap-3 flex-wrap"
         >
-          <a
+          <motion.a
             href="https://www.linkedin.com/in/harinivas-m-504ab7250/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-5 py-3 rounded-xl bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300 text-sm font-medium"
+            className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300 text-sm font-medium shimmer-on-hover hover-lift shadow-lg"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <Linkedin className="w-4 h-4" /> LinkedIn
-          </a>
-          <a
-            href="https://github.com/"
+            <Linkedin className="w-4 h-4 group-hover:rotate-12 transition-transform" /> LinkedIn
+          </motion.a>
+          <motion.a
+            href="https://github.com/M-Harinivas"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-5 py-3 rounded-xl bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300 text-sm font-medium"
+            className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300 text-sm font-medium shimmer-on-hover hover-lift shadow-lg"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <Github className="w-4 h-4" /> GitHub
-          </a>
-          <a
+            <Github className="w-4 h-4 group-hover:rotate-12 transition-transform" /> GitHub
+          </motion.a>
+          <motion.a
             href="mailto:harinivas987@gmail.com"
-            className="flex items-center gap-2 px-5 py-3 rounded-xl bg-primary text-primary-foreground hover:opacity-90 transition-opacity text-sm font-medium"
+            className="group relative flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-accent text-white transition-all duration-300 text-sm font-medium hover-lift shadow-lg overflow-hidden"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <Mail className="w-4 h-4" /> Get in Touch
-          </a>
+            <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <Mail className="w-4 h-4 relative z-10 group-hover:rotate-12 transition-transform" /> 
+            <span className="relative z-10">Get in Touch</span>
+          </motion.a>
         </motion.div>
         </div>
       </div>

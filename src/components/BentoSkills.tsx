@@ -37,11 +37,10 @@ const BentoSkills = () => {
       {/* Tech skills with bars */}
       <div
         ref={ref1}
-        className={`bento-card col-span-full sm:col-span-6 lg:col-span-5 row-span-2 scroll-reveal ${v1 ? "visible" : ""}`}
+        className={`bento-card glass-effect hover-lift col-span-full sm:col-span-6 lg:col-span-5 row-span-2 scroll-reveal ${v1 ? "visible" : ""}`}
         style={{ transitionDelay: "0.1s" }}
       >
         <h3 className="text-lg font-semibold mb-1">Technical Skills</h3>
-        <p className="text-sm text-muted-foreground mb-5 font-mono">// core competencies</p>
 
         <div className="space-y-4">
           {techSkills.map((skill) => (
@@ -53,15 +52,17 @@ const BentoSkills = () => {
                 </span>
                 <span className="text-muted-foreground font-mono text-xs">{skill.level}%</span>
               </div>
-              <div className="h-2 rounded-full bg-secondary overflow-hidden">
+              <div className="h-2.5 rounded-full bg-secondary overflow-hidden shadow-inner">
                 <div
-                  className="h-full rounded-full transition-all duration-1000 ease-out"
+                  className="h-full rounded-full transition-all duration-1000 ease-out relative overflow-hidden"
                   style={{
                     width: v1 ? `${skill.level}%` : "0%",
                     background: "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)))",
                     transitionDelay: "0.3s",
                   }}
-                />
+                >
+                  <div className="absolute inset-0 shimmer-on-hover" />
+                </div>
               </div>
             </div>
           ))}
@@ -71,18 +72,17 @@ const BentoSkills = () => {
       {/* Soft skills */}
       <div
         ref={ref2}
-        className={`bento-card col-span-full sm:col-span-6 lg:col-span-3 scroll-reveal ${v2 ? "visible" : ""}`}
+        className={`bento-card glass-effect hover-lift col-span-full sm:col-span-6 lg:col-span-3 scroll-reveal ${v2 ? "visible" : ""}`}
         style={{ transitionDelay: "0.2s" }}
       >
         <h3 className="text-lg font-semibold mb-1">Soft Skills</h3>
-        <p className="text-sm text-muted-foreground mb-4 font-mono">// strengths</p>
         <div className="space-y-2">
           {softSkills.map((skill, i) => (
             <div
               key={skill}
-              className="flex items-center gap-3 p-2.5 rounded-xl bg-secondary/50 hover:bg-primary/10 transition-colors"
+              className="flex items-center gap-3 p-2.5 rounded-xl bg-gradient-to-r from-secondary/50 to-secondary/30 hover:from-primary/10 hover:to-accent/10 transition-all duration-300 cursor-default"
             >
-              <span className="text-xs font-mono text-accent w-5">{String(i + 1).padStart(2, "0")}</span>
+              <span className="text-xs font-mono text-accent w-5 font-semibold">{String(i + 1).padStart(2, "0")}</span>
               <span className="text-sm font-medium">{skill}</span>
             </div>
           ))}
@@ -92,16 +92,15 @@ const BentoSkills = () => {
       {/* Tools chip card */}
       <div
         ref={ref3}
-        className={`bento-card col-span-full lg:col-span-4 scroll-reveal ${v3 ? "visible" : ""}`}
+        className={`bento-card glass-effect hover-lift col-span-full lg:col-span-4 scroll-reveal ${v3 ? "visible" : ""}`}
         style={{ transitionDelay: "0.3s" }}
       >
         <h3 className="text-lg font-semibold mb-1">Tools & Tech</h3>
-        <p className="text-sm text-muted-foreground mb-4 font-mono">// daily stack</p>
         <div className="flex flex-wrap gap-2">
           {tools.map((tool) => (
             <span
               key={tool}
-              className="px-3 py-1.5 rounded-lg bg-secondary text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-default"
+              className="px-3 py-1.5 rounded-lg bg-secondary text-sm font-medium hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-white transition-all duration-300 cursor-default shadow-sm hover:shadow-md hover:scale-105"
             >
               {tool}
             </span>

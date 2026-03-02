@@ -1,5 +1,6 @@
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import { ExternalLink, Github, Cpu, Bug, Sprout } from "lucide-react";
+import { ExternalLink, Github, Cpu, Bug, Sprout, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const projects = [
   {
@@ -44,62 +45,81 @@ const BentoProjects = () => {
         className={`col-span-full scroll-reveal ${titleVisible ? "visible" : ""}`}
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-1">Featured Projects</h2>
-        <p className="text-muted-foreground font-mono text-sm mb-6">// things I've built</p>
       </div>
 
       {projects.map((project, index) => {
         const { ref, isVisible } = useScrollReveal();
         return (
-          <div
+          <motion.div
             key={project.title}
             ref={ref}
-            className={`bento-card col-span-full lg:col-span-4 flex flex-col justify-between group scroll-reveal ${isVisible ? "visible" : ""}`}
+            className={`bento-card bento-card-3d glow-border col-span-full lg:col-span-4 flex flex-col justify-between group scroll-reveal ${isVisible ? "visible" : ""}`}
             style={{ transitionDelay: `${index * 0.15}s` }}
+            whileHover={{ y: -8 }}
+            transition={{ duration: 0.3 }}
           >
-            {/* Decorative corner */}
-            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-3xl" />
+            {/* Decorative gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+            
+            {/* Animated corner accent */}
+            <motion.div 
+              className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/20 to-transparent rounded-bl-3xl"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={isVisible ? { scale: 1, opacity: 1 } : {}}
+              transition={{ delay: 0.5 + index * 0.1 }}
+            />
 
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                  <project.icon className="w-6 h-6 text-primary" />
-                </div>
-                <span className="text-xs font-mono text-muted-foreground">{project.period}</span>
+                <motion.div 
+                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <project.icon className="w-7 h-7 text-primary" />
+                </motion.div>
+                <span className="text-xs font-mono text-muted-foreground px-3 py-1 rounded-full bg-secondary/50">{project.period}</span>
               </div>
 
-              <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+              <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors flex items-center gap-2">
                 {project.title}
+                <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 {project.tags.map((tag) => (
-                  <span
+                  <motion.span
                     key={tag}
-                    className="px-2.5 py-1 rounded-md bg-primary/10 text-primary text-xs font-mono"
+                    className="px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-xs font-mono hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
+                    whileHover={{ scale: 1.05 }}
                   >
                     {tag}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </div>
 
             <div className="flex items-center gap-3 relative z-10">
-              <a
+              <motion.a
                 href={project.github}
-                className="p-2.5 rounded-xl bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                className="group/btn p-3 rounded-xl bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300 shadow-md"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
               >
-                <Github className="w-4 h-4" />
-              </a>
-              <a
+                <Github className="w-5 h-5" />
+              </motion.a>
+              <motion.a
                 href={project.link}
-                className="p-2.5 rounded-xl bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                className="group/btn p-3 rounded-xl bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300 shadow-md"
+                whileHover={{ scale: 1.1, rotate: -5 }}
+                whileTap={{ scale: 0.9 }}
               >
-                <ExternalLink className="w-4 h-4" />
-              </a>
+                <ExternalLink className="w-5 h-5" />
+              </motion.a>
             </div>
-          </div>
+          </motion.div>
         );
       })}
     </>
