@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harinivas M - ML Engineer & AI Enthusiast</title>
+  <meta name="description" content="Machine Learning Engineer specializing in predictive models, computer vision, and cloud solutions">
+  <style>
+    :root {
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --slate-500: #64748b;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+      --slate-950: #020617;
+      
+      --blue-400: #60a5fa;
+      --blue-500: #3b82f6;
+      --blue-600: #2563eb;
+      --blue-700: #1d4ed8;
+      
+      --emerald-400: #34d399;
+      --emerald-500: #10b981;
+      --emerald-600: #059669;
+      
+      --amber-400: #fbbf24;
+      --amber-500: #f59e0b;
+      
+      --bg: var(--slate-50);
+      --bg-elevated: white;
+      --text: var(--slate-900);
+      --text-muted: var(--slate-600);
+      --text-subtle: var(--slate-500);
+      --border: var(--slate-200);
+      --accent: var(--blue-600);
+      --accent-hover: var(--blue-700);
+      --accent-light: var(--blue-500);
+      
+      --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -1px rgba(15, 23, 42, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.08), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+    
+    /* Custom Cursor */
+    #cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      mix-blend-mode: difference;
+    }
+    
+    #cursor-follower {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.25s ease, width 0.25s ease, height 0.25s ease, opacity 0.25s ease;
+      mix-blend-mode: difference;
+    }
+    
+    body.cursor-hover #cursor {
+      transform: scale(1.5);
+    }
+    
+    body.cursor-hover #cursor-follower {
+      transform: scale(1.5);
+    }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(248, 250, 252, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s var(--transition-smooth);
+    }
+    
+    nav.scrolled {
+      background: rgba(248, 250, 252, 0.95);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    
+    .logo-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+    
+    .logo:hover .logo-avatar {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 0.5rem;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      padding: 0.5rem 1rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border-radius: 0.5rem;
+      position: relative;
+    }
+    
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+      background: rgba(37, 99, 235, 0.06);
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--slate-50) 0%, var(--slate-100) 100%);
+    }
+    
+    .hero-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      animation: fadeInUp 0.8s var(--transition-smooth) 0.2s both;
+    }
+    
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--emerald-500);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s var(--transition-smooth) 0.4s both;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, var(--blue-600) 0%, var(--blue-500) 50%, var(--emerald-500) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .hero-subtitle {
+      font-size: clamp(1.125rem, 2vw, 1.375rem);
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+      animation: fadeInUp 0.8s var(--transition-smooth) 0.6s both;
+    }
+    
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s var(--transition-smooth) 0.8s both;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 0.625rem;
+      transition: all 0.3s var(--transition-smooth);
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+    
+    .btn-secondary {
+      background: var(--bg-elevated);
+      color: var(--text);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--slate-100);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-subtle);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      animation: fadeIn 1s ease 1.5s both;
+      z-index: 2;
+    }
+    
+    .scroll-arrow {
+      width: 24px;
+      height: 24px;
+      border-left: 2px solid var(--text-subtle);
+      border-bottom: 2px solid var(--text-subtle);
+      transform: rotate(-45deg);
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: rotate(-45deg) translateY(0); }
+      50% { transform: rotate(-45deg) translateY(8px); }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    /* Section Styles */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .section-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    
+    .section-description {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Quick Links */
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 4rem;
+    }
+    
+    .quick-link-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.3s var(--transition-smooth);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .quick-link-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue-600), var(--emerald-500));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s var(--transition-smooth);
+    }
+    
+    .quick-link-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+    
+    .quick-link-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .quick-link-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(16, 185, 129, 0.1));
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+    
+    .quick-link-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .quick-link-card p {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--slate-900);
+      color: var(--slate-400);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    footer a {
+      color: var(--slate-300);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    footer a:hover {
+      color: white;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 0.5rem;
+      background: var(--slate-800);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+      background: var(--blue-600);
+      transform: translateY(-3px);
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      section {
+        padding: 4rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Custom Cursor -->
+  <div id="cursor"></div>
+  <div id="cursor-follower"></div>
+
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="uploads/714022202022.jpg" alt="Harinivas M" class="logo-avatar">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <canvas id="hero-canvas" class="hero-canvas"></canvas>
+    <div class="hero-content">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span>Currently at Charteredways Services</span>
+      </div>
+      
+      <h1>
+        Building Intelligent Solutions<br>
+        with <span class="gradient-text">Machine Learning</span>
+      </h1>
+      
+      <p class="hero-subtitle">
+        ML Engineer specializing in predictive models, computer vision, and cloud-based AI solutions. 
+        Transforming data into actionable insights with Python, TensorFlow, and AWS.
+      </p>
+      
+      <div class="hero-cta">
+        <a href="projects.html" class="btn btn-primary">
+          <span>View My Work</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.16669 10H15.8334M15.8334 10L10 4.16669M15.8334 10L10 15.8334" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="contact.html" class="btn btn-secondary">
+          <span>Get in Touch</span>
+        </a>
+      </div>
+    </div>
+    
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- Quick Navigation -->
+  <section>
+    <div class="section-header">
+      <div class="section-label">Explore</div>
+      <h2 class="section-title">What I Do</h2>
+      <p class="section-description">
+        From machine learning models to cloud architecture, I build end-to-end AI solutions
+      </p>
+    </div>
+    
+    <div class="quick-links">
+      <a href="projects.html" class="quick-link-card">
+        <div class="quick-link-icon">💡</div>
+        <h3>Projects</h3>
+        <p>Explore my portfolio of ML projects, from landmark detection to real-time pest monitoring systems</p>
+      </a>
+      
+      <a href="experience.html" class="quick-link-card">
+        <div class="quick-link-icon">🚀</div>
+        <h3>Experience</h3>
+        <p>Professional journey, internships, and hands-on development experience in Python and ML</p>
+      </a>
+      
+      <a href="about.html#skills" class="quick-link-card">
+        <div class="quick-link-icon">⚙️</div>
+        <h3>Tech Stack</h3>
+        <p>Deep dive into my technical skills: Python, TensorFlow, AWS, OpenCV, and more</p>
+      </a>
+      
+      <a href="about.html#publications" class="quick-link-card">
+        <div class="quick-link-icon">📚</div>
+        <h3>Publications</h3>
+        <p>Research papers on AI-based retail systems, crop recommendation, and landmark detection</p>
+      </a>
+      
+      <a href="about.html#certifications" class="quick-link-card">
+        <div class="quick-link-icon">🏆</div>
+        <h3>Certifications</h3>
+        <p>AWS certifications, GUINNESS WORLD RECORDS, and professional achievements</p>
+      </a>
+      
+      <a href="blog.html" class="quick-link-card">
+        <div class="quick-link-icon">✍️</div>
+        <h3>Blog</h3>
+        <p>AWS tutorials, cloud architecture guides, and technical articles on DEV.to</p>
+      </a>
+      
+      <a href="contact.html" class="quick-link-card">
+        <div class="quick-link-icon">📬</div>
+        <h3>Contact</h3>
+        <p>Let's collaborate on ML projects or discuss opportunities in AI and cloud computing</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Harinivas M. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/harinivas-m-504ab7250/" target="_blank" class="social-link" aria-label="LinkedIn">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M4.5 3C3.67 3 3 3.67 3 4.5V15.5C3 16.33 3.67 17 4.5 17H15.5C16.33 17 17 16.33 17 15.5V4.5C17 3.67 16.33 3 15.5 3H4.5ZM6.5 5C7.05 5 7.5 5.45 7.5 6C7.5 6.55 7.05 7 6.5 7C5.95 7 5.5 6.55 5.5 6C5.5 5.45 5.95 5 6.5 5ZM13 8C14.38 8 15 8.96 15 10.34V14H13V10.75C13 10.06 12.69 9.5 12 9.5C11.31 9.5 11 10.06 11 10.75V14H9V8H11V8.88C11.34 8.34 12.06 8 13 8ZM5.5 8H7.5V14H5.5V8Z"/>
+        </svg>
+      </a>
+      <a href="https://github.com/M-Harinivas" target="_blank" class="social-link" aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M10 2C5.58 2 2 5.58 2 10C2 13.54 4.29 16.53 7.47 17.59C7.87 17.66 8.02 17.42 8.02 17.21C8.02 17.02 8.01 16.39 8.01 15.72C6 16.09 5.48 15.16 5.32 14.68C5.23 14.43 4.84 13.72 4.5 13.53C4.22 13.38 3.82 13.01 4.49 13C5.12 13.01 5.57 13.58 5.72 13.82C6.44 15.03 7.59 14.68 8.04 14.47C8.1 13.95 8.32 13.59 8.56 13.39C6.84 13.19 5.04 12.5 5.04 9.52C5.04 8.67 5.23 7.97 5.74 7.43C5.66 7.23 5.38 6.41 5.82 5.31C5.82 5.31 6.49 5.1 8.02 6.13C8.66 5.95 9.34 5.86 10.02 5.86C10.7 5.86 11.38 5.95 12.02 6.13C13.55 5.09 14.22 5.31 14.22 5.31C14.66 6.41 14.38 7.23 14.3 7.43C14.81 7.97 15 8.66 15 9.52C15 12.51 13.19 13.19 11.47 13.39C11.76 13.65 12.01 14.15 12.01 14.93C12.01 16.03 12 16.92 12 17.21C12 17.42 12.15 17.67 12.55 17.59C14.1381 17.0539 15.5069 16.0332 16.4611 14.6716C17.4153 13.31 17.9988 11.6778 18 10C18 5.58 14.42 2 10 2Z"/>
+        </svg>
+      </a>
+      <a href="mailto:harinivas987@gmail.com" class="social-link" aria-label="Email">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M3 4C2.45 4 2 4.45 2 5V15C2 15.55 2.45 16 3 16H17C17.55 16 18 15.55 18 15V5C18 4.45 17.55 4 17 4H3ZM3.5 6L10 9.88L16.5 6V5.5L10 9.38L3.5 5.5V6Z"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    // Custom Cursor
+    const cursor = document.getElementById('cursor');
+    const cursorFollower = document.getElementById('cursor-follower');
+    
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+    
+    function animateFollower() {
+      followerX += (mouseX - followerX) * 0.1;
+      followerY += (mouseY - followerY) * 0.1;
+      cursorFollower.style.left = (followerX - 20) + 'px';
+      cursorFollower.style.top = (followerY - 20) + 'px';
+      requestAnimationFrame(animateFollower);
+    }
+    animateFollower();
+    
+    // Cursor hover effect
+    const interactiveElements = document.querySelectorAll('a, button, .btn');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+    
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+    
+    // Animated Background
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+    
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = Math.random() * 2 + 1;
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+      
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(37, 99, 235, 0.15)';
+        ctx.fill();
+      }
+    }
+    
+    const particles = [];
+    for (let i = 0; i < 80; i++) {
+      particles.push(new Particle());
+    }
+    
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 150) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(37, 99, 235, ${0.1 * (1 - distance / 150)})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+  </script>
+</body>
+</html>
