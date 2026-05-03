@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,11 +17,11 @@
       --slate-700: #334155;
       --slate-800: #1e293b;
       --slate-900: #0f172a;
-      
+
       --blue-600: #2563eb;
       --blue-700: #1d4ed8;
       --emerald-500: #10b981;
-      
+
       --bg: var(--slate-50);
       --bg-elevated: white;
       --text: var(--slate-900);
@@ -28,19 +29,19 @@
       --text-subtle: var(--slate-500);
       --border: var(--slate-200);
       --accent: var(--blue-600);
-      
+
       --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
       --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
       --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -1px rgba(15, 23, 42, 0.04);
       --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.04);
     }
-    
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
       background: var(--bg);
@@ -49,7 +50,7 @@
       overflow-x: hidden;
       cursor: none;
     }
-    
+
     #cursor {
       position: fixed;
       width: 12px;
@@ -61,7 +62,7 @@
       transition: transform 0.15s ease;
       mix-blend-mode: difference;
     }
-    
+
     #cursor-follower {
       position: fixed;
       width: 40px;
@@ -73,10 +74,15 @@
       transition: transform 0.25s ease;
       mix-blend-mode: difference;
     }
-    
-    body.cursor-hover #cursor { transform: scale(1.5); }
-    body.cursor-hover #cursor-follower { transform: scale(1.5); }
-    
+
+    body.cursor-hover #cursor {
+      transform: scale(1.5);
+    }
+
+    body.cursor-hover #cursor-follower {
+      transform: scale(1.5);
+    }
+
     nav {
       position: fixed;
       top: 0;
@@ -88,7 +94,7 @@
       border-bottom: 1px solid var(--border);
       box-shadow: var(--shadow-sm);
     }
-    
+
     .nav-container {
       max-width: 1400px;
       margin: 0 auto;
@@ -97,18 +103,18 @@
       justify-content: space-between;
       align-items: center;
     }
-    
+
     .logo {
       display: flex;
       align-items: center;
       text-decoration: none;
       transition: transform 0.3s ease;
     }
-    
+
     .logo:hover {
       transform: scale(1.05);
     }
-    
+
     .logo-avatar {
       width: 40px;
       height: 40px;
@@ -118,18 +124,18 @@
       box-shadow: var(--shadow-sm);
       transition: all 0.3s ease;
     }
-    
+
     .logo:hover .logo-avatar {
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
     }
-    
+
     .nav-links {
       display: flex;
       gap: 0.5rem;
       list-style: none;
     }
-    
+
     .nav-links a {
       padding: 0.5rem 1rem;
       color: var(--text-muted);
@@ -139,20 +145,20 @@
       transition: all 0.3s ease;
       border-radius: 0.5rem;
     }
-    
+
     .nav-links a:hover,
     .nav-links a.active {
       color: var(--accent);
       background: rgba(37, 99, 235, 0.06);
     }
-    
+
     .page-header {
       padding: 8rem 2rem 4rem;
       text-align: center;
       max-width: 800px;
       margin: 0 auto;
     }
-    
+
     .page-label {
       font-size: 0.875rem;
       font-weight: 600;
@@ -163,7 +169,7 @@
       opacity: 0;
       animation: fadeInUp 0.6s var(--transition-smooth) 0.2s forwards;
     }
-    
+
     .page-title {
       font-size: clamp(2.5rem, 6vw, 4rem);
       font-weight: 800;
@@ -172,7 +178,7 @@
       opacity: 0;
       animation: fadeInUp 0.6s var(--transition-smooth) 0.3s forwards;
     }
-    
+
     .page-description {
       font-size: 1.25rem;
       color: var(--text-muted);
@@ -180,18 +186,19 @@
       opacity: 0;
       animation: fadeInUp 0.6s var(--transition-smooth) 0.4s forwards;
     }
-    
+
     @keyframes fadeInUp {
       from {
         opacity: 0;
         transform: translateY(20px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-    
+
     .contact-container {
       max-width: 1100px;
       margin: 0 auto;
@@ -200,13 +207,13 @@
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
     }
-    
+
     .contact-info {
       display: flex;
       flex-direction: column;
       gap: 2rem;
     }
-    
+
     .contact-card {
       background: var(--bg-elevated);
       border: 1px solid var(--border);
@@ -215,13 +222,13 @@
       box-shadow: var(--shadow-sm);
       transition: all 0.3s var(--transition-smooth);
     }
-    
+
     .contact-card:hover {
       box-shadow: var(--shadow-lg);
       transform: translateY(-4px);
       border-color: var(--accent);
     }
-    
+
     .contact-card h3 {
       font-size: 1.25rem;
       font-weight: 700;
@@ -230,7 +237,7 @@
       align-items: center;
       gap: 0.75rem;
     }
-    
+
     .contact-icon {
       width: 40px;
       height: 40px;
@@ -241,7 +248,7 @@
       justify-content: center;
       color: var(--accent);
     }
-    
+
     .contact-method {
       display: flex;
       align-items: center;
@@ -254,12 +261,12 @@
       text-decoration: none;
       color: var(--text);
     }
-    
+
     .contact-method:hover {
       background: rgba(37, 99, 235, 0.06);
       transform: translateX(4px);
     }
-    
+
     .method-icon {
       width: 36px;
       height: 36px;
@@ -270,27 +277,27 @@
       justify-content: center;
       color: var(--accent);
     }
-    
+
     .method-content {
       flex: 1;
     }
-    
+
     .method-label {
       font-size: 0.8125rem;
       color: var(--text-subtle);
       margin-bottom: 0.125rem;
     }
-    
+
     .method-value {
       font-weight: 600;
       color: var(--text);
     }
-    
+
     .social-links {
       display: flex;
       gap: 1rem;
     }
-    
+
     .social-link {
       width: 48px;
       height: 48px;
@@ -304,14 +311,14 @@
       transition: all 0.3s ease;
       text-decoration: none;
     }
-    
+
     .social-link:hover {
       background: var(--accent);
       color: white;
       border-color: var(--accent);
       transform: translateY(-3px);
     }
-    
+
     .form-container {
       background: var(--bg-elevated);
       border: 1px solid var(--border);
@@ -319,18 +326,18 @@
       padding: 2.5rem;
       box-shadow: var(--shadow-md);
     }
-    
+
     .form-group {
       margin-bottom: 1.5rem;
     }
-    
+
     .form-group label {
       display: block;
       font-weight: 600;
       margin-bottom: 0.5rem;
       color: var(--text);
     }
-    
+
     .form-group input,
     .form-group textarea {
       width: 100%;
@@ -343,19 +350,19 @@
       color: var(--text);
       transition: all 0.3s ease;
     }
-    
+
     .form-group input:focus,
     .form-group textarea:focus {
       outline: none;
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
     }
-    
+
     .form-group textarea {
       resize: vertical;
       min-height: 150px;
     }
-    
+
     .submit-btn {
       width: 100%;
       padding: 1rem;
@@ -368,27 +375,39 @@
       cursor: pointer;
       transition: all 0.3s var(--transition-smooth);
     }
-    
+
     .submit-btn:hover {
       background: var(--blue-700);
       box-shadow: var(--shadow-lg);
       transform: translateY(-2px);
     }
-    
+
     @media (max-width: 968px) {
       .contact-container {
         grid-template-columns: 1fr;
       }
     }
-    
+
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .page-header { padding: 6rem 1.5rem 3rem; }
-      .contact-container { padding: 0 1.5rem 4rem; }
-      .form-container { padding: 2rem; }
+      .nav-links {
+        display: none;
+      }
+
+      .page-header {
+        padding: 6rem 1.5rem 3rem;
+      }
+
+      .contact-container {
+        padding: 0 1.5rem 4rem;
+      }
+
+      .form-container {
+        padding: 2rem;
+      }
     }
   </style>
 </head>
+
 <body>
   <div id="cursor"></div>
   <div id="cursor-follower"></div>
@@ -423,73 +442,50 @@
         <h3>
           <span class="contact-icon">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M3 4C2.45 4 2 4.45 2 5V15C2 15.55 2.45 16 3 16H17C17.55 16 18 15.55 18 15V5C18 4.45 17.55 4 17 4H3ZM3.5 6L10 9.88L16.5 6V5.5L10 9.38L3.5 5.5V6Z"/>
+              <path
+                d="M3 4C2.45 4 2 4.45 2 5V15C2 15.55 2.45 16 3 16H17C17.55 16 18 15.55 18 15V5C18 4.45 17.55 4 17 4H3ZM3.5 6L10 9.88L16.5 6V5.5L10 9.38L3.5 5.5V6Z" />
             </svg>
           </span>
           Contact Information
         </h3>
-        
-        <a href="/cdn-cgi/l/email-protection#b2dad3c0dbdcdbc4d3c18b8a85f2d5dfd3dbde9cd1dddf" class="contact-method">
+
+        <a href="mailto:harinivas987@gmail.com" class="contact-method">
           <div class="method-icon">
             <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M3 4C2.45 4 2 4.45 2 5V15C2 15.55 2.45 16 3 16H17C17.55 16 18 15.55 18 15V5C18 4.45 17.55 4 17 4H3ZM3.5 6L10 9.88L16.5 6V5.5L10 9.38L3.5 5.5V6Z"/>
+              <path
+                d="M3 4C2.45 4 2 4.45 2 5V15C2 15.55 2.45 16 3 16H17C17.55 16 18 15.55 18 15V5C18 4.45 17.55 4 17 4H3ZM3.5 6L10 9.88L16.5 6V5.5L10 9.38L3.5 5.5V6Z" />
             </svg>
           </div>
           <div class="method-content">
             <div class="method-label">Email</div>
-            <div class="method-value"><span class="__cf_email__" data-cfemail="50383122393e3926312369686710373d31393c7e333f3d">[email&#160;protected]</span></div>
+            <div class="method-value">harinivas987@gmail.com</div>
           </div>
         </a>
-        
-        <a href="tel:+916369792085" class="contact-method">
-          <div class="method-icon">
-            <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M3 2C2.45 2 2 2.45 2 3V17C2 17.55 2.45 18 3 18H17C17.55 18 18 17.55 18 17V3C18 2.45 17.55 2 17 2H3ZM7.5 4L9 5.5L7.5 7L6 5.5L7.5 4ZM12.5 4L14 5.5L12.5 7L11 5.5L12.5 4ZM5 8H15V16H5V8Z"/>
-            </svg>
-          </div>
-          <div class="method-content">
-            <div class="method-label">Phone</div>
-            <div class="method-value">+91 6369792085</div>
-          </div>
-        </a>
-        
-        <div class="contact-method">
-          <div class="method-icon">
-            <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M10 2C7.87827 2 5.84344 2.84285 4.34315 4.34315C2.84285 5.84344 2 7.87827 2 10C2 12.1217 2.84285 14.1566 4.34315 15.6569C5.84344 17.1571 7.87827 18 10 18C12.1217 18 14.1566 17.1571 15.6569 15.6569C17.1571 14.1566 18 12.1217 18 10C18 7.87827 17.1571 5.84344 15.6569 4.34315C14.1566 2.84285 12.1217 2 10 2ZM10 5C11.66 5 13 6.34 13 8C13 9.66 11.66 11 10 11C8.34 11 7 9.66 7 8C7 6.34 8.34 5 10 5ZM10 16.5C8.167 16.5 6.5425 15.6065 5.5 14.225C5.527 12.808 8.333 12.025 10 12.025C11.6595 12.025 14.473 12.808 14.5 14.225C13.4575 15.6065 11.833 16.5 10 16.5Z"/>
-            </svg>
-          </div>
-          <div class="method-content">
-            <div class="method-label">Location</div>
-            <div class="method-value">Dharmapuri, India</div>
-          </div>
-        </div>
       </div>
 
       <div class="contact-card">
         <h3>
           <span class="contact-icon">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M10 2C5.58 2 2 5.58 2 10C2 14.42 5.58 18 10 18C14.42 18 18 14.42 18 10C18 5.58 14.42 2 10 2ZM13.85 14.35L10 11.5V6H11.5V10.75L14.65 13.15L13.85 14.35Z"/>
+              <path
+                d="M10 2C5.58 2 2 5.58 2 10C2 14.42 5.58 18 10 18C14.42 18 18 14.42 18 10C18 5.58 14.42 2 10 2ZM13.85 14.35L10 11.5V6H11.5V10.75L14.65 13.15L13.85 14.35Z" />
             </svg>
           </span>
           Social Links
         </h3>
-        
+
         <div class="social-links">
-          <a href="https://www.linkedin.com/in/harinivas-m-504ab7250/" target="_blank" class="social-link" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/harinivas-m-504ab7250/" target="_blank" class="social-link"
+            aria-label="LinkedIn">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M4.5 3C3.67 3 3 3.67 3 4.5V15.5C3 16.33 3.67 17 4.5 17H15.5C16.33 17 17 16.33 17 15.5V4.5C17 3.67 16.33 3 15.5 3H4.5ZM6.5 5C7.05 5 7.5 5.45 7.5 6C7.5 6.55 7.05 7 6.5 7C5.95 7 5.5 6.55 5.5 6C5.5 5.45 5.95 5 6.5 5ZM13 8C14.38 8 15 8.96 15 10.34V14H13V10.75C13 10.06 12.69 9.5 12 9.5C11.31 9.5 11 10.06 11 10.75V14H9V8H11V8.88C11.34 8.34 12.06 8 13 8ZM5.5 8H7.5V14H5.5V8Z"/>
+              <path
+                d="M4.5 3C3.67 3 3 3.67 3 4.5V15.5C3 16.33 3.67 17 4.5 17H15.5C16.33 17 17 16.33 17 15.5V4.5C17 3.67 16.33 3 15.5 3H4.5ZM6.5 5C7.05 5 7.5 5.45 7.5 6C7.5 6.55 7.05 7 6.5 7C5.95 7 5.5 6.55 5.5 6C5.5 5.45 5.95 5 6.5 5ZM13 8C14.38 8 15 8.96 15 10.34V14H13V10.75C13 10.06 12.69 9.5 12 9.5C11.31 9.5 11 10.06 11 10.75V14H9V8H11V8.88C11.34 8.34 12.06 8 13 8ZM5.5 8H7.5V14H5.5V8Z" />
             </svg>
           </a>
           <a href="https://github.com/M-Harinivas" target="_blank" class="social-link" aria-label="GitHub">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M10 2C5.58 2 2 5.58 2 10C2 13.54 4.29 16.53 7.47 17.59C7.87 17.66 8.02 17.42 8.02 17.21C8.02 17.02 8.01 16.39 8.01 15.72C6 16.09 5.48 15.16 5.32 14.68C5.23 14.43 4.84 13.72 4.5 13.53C4.22 13.38 3.82 13.01 4.49 13C5.12 13.01 5.57 13.58 5.72 13.82C6.44 15.03 7.59 14.68 8.04 14.47C8.1 13.95 8.32 13.59 8.56 13.39C6.84 13.19 5.04 12.5 5.04 9.52C5.04 8.67 5.23 7.97 5.74 7.43C5.66 7.23 5.38 6.41 5.82 5.31C5.82 5.31 6.49 5.1 8.02 6.13C8.66 5.95 9.34 5.86 10.02 5.86C10.7 5.86 11.38 5.95 12.02 6.13C13.55 5.09 14.22 5.31 14.22 5.31C14.66 6.41 14.38 7.23 14.3 7.43C14.81 7.97 15 8.66 15 9.52C15 12.51 13.19 13.19 11.47 13.39C11.76 13.65 12.01 14.15 12.01 14.93C12.01 16.03 12 16.92 12 17.21C12 17.42 12.15 17.67 12.55 17.59C14.1381 17.0539 15.5069 16.0332 16.4611 14.6716C17.4153 13.31 17.9988 11.6778 18 10C18 5.58 14.42 2 10 2Z"/>
-            </svg>
-          </a>
-          <a href="https://twitter.com/" target="_blank" class="social-link" aria-label="Twitter">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M18 4.5C17.4 4.8 16.8 5 16.1 5.1C16.8 4.7 17.3 4 17.5 3.2C16.9 3.6 16.2 3.8 15.4 4C14.8 3.3 13.9 2.8 12.9 2.8C11 2.8 9.4 4.4 9.4 6.3C9.4 6.6 9.4 6.8 9.5 7C6.5 6.9 3.9 5.5 2.2 3.4C1.9 3.9 1.7 4.5 1.7 5.2C1.7 6.4 2.3 7.5 3.3 8.1C2.8 8.1 2.3 7.9 1.8 7.7V7.8C1.8 9.4 3 10.7 4.6 11C4.3 11.1 4 11.1 3.6 11.1C3.4 11.1 3.1 11.1 2.9 11C3.4 12.3 4.6 13.2 6.1 13.2C5 14 3.6 14.5 2.1 14.5C1.8 14.5 1.5 14.5 1.2 14.5C2.7 15.3 4.5 15.8 6.3 15.8C12.9 15.8 16.5 11.2 16.5 7.2V6.7C17.2 6.2 17.7 5.6 18 4.5Z"/>
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M10 2C5.58 2 2 5.58 2 10C2 13.54 4.29 16.53 7.47 17.59C7.87 17.66 8.02 17.42 8.02 17.21C8.02 17.02 8.01 16.39 8.01 15.72C6 16.09 5.48 15.16 5.32 14.68C5.23 14.43 4.84 13.72 4.5 13.53C4.22 13.38 3.82 13.01 4.49 13C5.12 13.01 5.57 13.58 5.72 13.82C6.44 15.03 7.59 14.68 8.04 14.47C8.1 13.95 8.32 13.59 8.56 13.39C6.84 13.19 5.04 12.5 5.04 9.52C5.04 8.67 5.23 7.97 5.74 7.43C5.66 7.23 5.38 6.41 5.82 5.31C5.82 5.31 6.49 5.1 8.02 6.13C8.66 5.95 9.34 5.86 10.02 5.86C10.7 5.86 11.38 5.95 12.02 6.13C13.55 5.09 14.22 5.31 14.22 5.31C14.66 6.41 14.38 7.23 14.3 7.43C14.81 7.97 15 8.66 15 9.52C15 12.51 13.19 13.19 11.47 13.39C11.76 13.65 12.01 14.15 12.01 14.93C12.01 16.03 12 16.92 12 17.21C12 17.42 12.15 17.67 12.55 17.59C14.1381 17.0539 15.5069 16.0332 16.4611 14.6716C17.4153 13.31 17.9988 11.6778 18 10C18 5.58 14.42 2 10 2Z" />
             </svg>
           </a>
         </div>
@@ -502,41 +498,42 @@
           <label for="name">Your Name</label>
           <input type="text" id="name" name="name" placeholder="John Doe" required>
         </div>
-        
+
         <div class="form-group">
           <label for="email">Email Address</label>
           <input type="email" id="email" name="email" placeholder="john@example.com" required>
         </div>
-        
+
         <div class="form-group">
           <label for="subject">Subject</label>
           <input type="text" id="subject" name="subject" placeholder="Collaboration Opportunity" required>
         </div>
-        
+
         <div class="form-group">
           <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Tell me about your project or opportunity..." required></textarea>
+          <textarea id="message" name="message" placeholder="Tell me about your project or opportunity..."
+            required></textarea>
         </div>
-        
+
         <button type="submit" class="submit-btn">Send Message</button>
       </form>
     </div>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     const cursor = document.getElementById('cursor');
     const cursorFollower = document.getElementById('cursor-follower');
-    
+
     let mouseX = 0, mouseY = 0;
     let followerX = 0, followerY = 0;
-    
+
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
       cursor.style.left = mouseX + 'px';
       cursor.style.top = mouseY + 'px';
     });
-    
+
     function animateFollower() {
       followerX += (mouseX - followerX) * 0.1;
       followerY += (mouseY - followerY) * 0.1;
@@ -545,13 +542,13 @@
       requestAnimationFrame(animateFollower);
     }
     animateFollower();
-    
+
     const interactiveElements = document.querySelectorAll('a, button, input, textarea');
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
       el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
     });
-    
+
     // Form submission
     const form = document.querySelector('form');
     form.addEventListener('submit', (e) => {
@@ -560,4 +557,5 @@
     });
   </script>
 </body>
+
 </html>
